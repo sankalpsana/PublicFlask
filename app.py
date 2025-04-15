@@ -17,10 +17,9 @@ def get_data():
         # Fetch JSON from GitHub (public repo example)
         github_url = 'https://raw.githubusercontent.com/Nikki-reddy/chug-dashboard/refs/heads/main/data/weekly_results/test_results_fri.json'
         # For private repo, add GitHub PAT
-        headers = {'Authorization': 'token ' + os.getenv('GITHUB_PAT')}
-        response = requests.get(github_url, headers=headers)
-        response = requests.get(github_url)
-        response.raise_for_status()  # Raise error for bad responses
+        payload = {}
+        headers = {'Authorization': 'Bearer ' + os.getenv('GITHUB_PAT')}
+        response = requests.request("GET", github_url, headers=headers, data=payload)
         return jsonify(response.json())
     except requests.RequestException as e:
         return jsonify({'error': f'Failed to fetch data: {str(e)}'}), 500
