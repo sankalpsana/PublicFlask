@@ -15,7 +15,7 @@ def get_data():
 
     try:
         # Fetch JSON from GitHub (public repo example)
-        github_url = 'https://github.com/Nikki-reddy/chug-dashboard/blob/main/data/weekly_results/test_results_fri.json'
+        github_url = 'https://raw.githubusercontent.com/Nikki-reddy/chug-dashboard/blob/main/data/weekly_results/test_results_fri.json'
         # For private repo, add GitHub PAT
         headers = {'Authorization': 'token ' + os.getenv('GITHUB_PAT')}
         response = requests.get(github_url, headers=headers)
